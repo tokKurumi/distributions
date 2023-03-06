@@ -289,7 +289,7 @@ namespace Univariate_distributions.Models
 			}
 
 			double num = (x - location) / scale;
-			return Math.Exp(AdvancedMath.LogGamma((freedom + 1.0) / 2.0) - AdvancedMath.LogGamma(freedom / 2.0)) * Math.Pow(1.0 + num * num / freedom, -0.5 * (freedom + 1.0)) / Math.Sqrt(freedom * Math.PI) / scale;
+			return Math.Exp(Math.Log(AdvancedMath.Gamma((freedom + 1.0) / 2.0)) - Math.Log(AdvancedMath.Gamma(freedom / 2.0))) * Math.Pow(1.0 + num * num / freedom, -0.5 * (freedom + 1.0)) / Math.Sqrt(freedom * Math.PI) / scale;
 		}
 
 		/// <summary>
@@ -312,6 +312,9 @@ namespace Univariate_distributions.Models
 			{
 				return Normal.CDF(location, scale, x);
 			}
+
+			//return AdvancedMath.Gamma((freedom + 1.0) / 2.0) / AdvancedMath.Gamma(freedom / 2.0) / Math.Sqrt(freedom * Math.PI) / Math.Pow(1.0 + x * x / freedom, (freedom + 1.0) / 2.0);
+			//return 0.5 + x * AdvancedMath.Gamma((freedom + 1.0) / 2.0) * 2 * AdvancedMath.Hypergeometric2F1(0.5, (freedom + 1.0) / 2.0, 1.5, (-1) * x * x / freedom) / Math.Sqrt(Math.PI * freedom) / AdvancedMath.Gamma(freedom / 2.0);
 
 			double num = (x - location) / scale;
 			double x2 = freedom / (freedom + num * num);

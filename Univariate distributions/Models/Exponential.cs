@@ -172,7 +172,8 @@ namespace Univariate_distributions.Models
 
 			if (!(x < 0.0))
 			{
-				return rate * Math.Exp((0.0 - rate) * x);
+				//return rate * Math.Exp((0.0 - rate) * x);
+				return Math.Exp(-x / rate) / rate;
 			}
 
 			return 0.0;

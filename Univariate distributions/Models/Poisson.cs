@@ -163,7 +163,9 @@ namespace Univariate_distributions.Models
 				throw new ArgumentException("Invalid parametrization for the distribution.");
 			}
 
-			return Math.Exp(-lambda) * Math.Pow(lambda, k) / SpecialFunctions.Factorial(k);
+			var result = Math.Exp(-lambda) * Math.Pow(lambda, k) / SpecialFunctions.Factorial(k);
+
+			return (result < 0) ? 0 : result;
 		}
 
 		/// <summary>
